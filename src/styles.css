@@ -1,0 +1,125 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: hsl(11, 41%, 95%);
+  color: hsl(30deg 6% 20%);
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+}
+
+h1,
+h2,
+span {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+h2,
+.side-heading {
+  border-bottom: 5px solid currentColor;
+}
+
+.sub-heading {
+  text-transform: none;
+}
+
+.main-heading {
+  grid-area: main-heading;
+  text-align: right;
+}
+
+.author {
+  color: hsl(3deg 100% 59%);
+  grid-area: author;
+  writing-mode: vertical-rl;
+  text-align: left;
+  margin: 0;
+}
+
+.author > * {
+  margin: 0;
+}
+
+.autor-info {
+  border-bottom: clamp(10px, calc(10px + 2vw), 2rem) solid hsl(3deg 100% 59%);
+  grid-area: author-info;
+}
+
+.course-info {
+  grid-area: course-info;
+}
+
+.side-heading {
+  border-top: 5px solid currentColor;
+  grid-area: side-heading;
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    "main-heading main-heading"
+    "... author"
+    "author-info author"
+    "course-info course-info"
+    "side-heading side-heading";
+  padding: calc(2rem + 1vw);
+}
+
+@media (min-width: 575px) {
+  main {
+    grid-template-areas:
+      "main-heading main-heading  ... "
+      "author author ..."
+      "author author side-heading"
+      "... author-info author-info"
+      "... course-info course-info";
+  }
+
+  .side-heading {
+    margin-bottom: 5rem;
+  }
+}
+
+@media (min-width: 860px) {
+  main {
+    grid-template-areas:
+      "main-heading main-heading  ... "
+      "... author ..."
+      "... author side-heading"
+      "course-info author ..."
+      "course-info author-info author-info"
+      "course-info author-info author-info";
+  }
+
+  .side-heading {
+    /* padding-top: 4rem; */
+    margin-bottom: 0px;
+  }
+
+  .course-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .course-info > h2:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  main {
+    transform: rotate(-45deg);
+  }
+
+  .course-info {
+    max-width: 100%;
+    /* text-align: right; */
+    align-items: flex-end;
+  }
+
+  .course-info > h2 {
+    font-size: 1rem;
+    max-width: clamp(10ch, calc(15ch + 1vw), 30ch);
+  }
+}
